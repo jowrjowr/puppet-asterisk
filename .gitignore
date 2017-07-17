@@ -1,1 +1,10 @@
 /pkg
+/.idea
+!/target/.keep
+/target/*
+Gemfile.lock
+/contrib/modules/*
+/.vagrant/
+/contrib/.librarian/
+/contrib/.tmp/
+/contrib/Puppetfile.lock

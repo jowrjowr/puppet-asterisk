@@ -10,6 +10,7 @@ class asterisk (
   $package_name            = $asterisk::params::package_name,
   $service_name            = $asterisk::params::service_name,
   $confdir                 = $asterisk::params::confdir,
+  $asterisk_options        = {},
   $iax_options             = {},
   $sip_options             = {},
   $voicemail_options       = {},
@@ -25,11 +26,18 @@ class asterisk (
   $modules_global_options  = {},
   $manager_enable          = $asterisk::params::manager_enable,
   $manager_port            = $asterisk::params::manager_port,
-  $manager_bindaddr        = $asterisk::params::manager_bindaddr
+  $manager_bindaddr        = $asterisk::params::manager_bindaddr,
+  $realtime_options        = {},
+  $logger_options          = {},
+  $mysql_options           = {}
 ) inherits asterisk::params {
 
   validate_bool($manage_service)
+  validate_bool($manage_package)
+  validate_string($package_name)
+  validate_string($service_name)
   validate_absolute_path($confdir)
+  validate_hash($asterisk_options)
   validate_hash($iax_options)
   validate_hash($sip_options)
   validate_hash($voicemail_options)
@@ -48,13 +56,29 @@ class asterisk (
     fail('Parameter $manager_port needs to be an integer value')
   }
   validate_string($manager_bindaddr)
-  validate_string($package_name)
-  validate_string($service_name)
 
-  $real_iax_options = merge($asterisk::params::iax_options, $iax_options)
+  validate_hash($realtime_options)
+  validate_hash($logger_options)
+  validate_hash($mysql_options)
+
+  $real_asterisk_options = merge(
+    $asterisk::params::asterisk_options,
+    $asterisk_options
+  )
+
+  $real_iax_options = merge (
+    $asterisk::params::iax_options,
+    $iax_options
+  )
+
   validate_array($real_iax_options['allow'])
   validate_array($real_iax_options['disallow'])
-  $real_sip_options = merge($asterisk::params::sip_options, $sip_options)
+
+  $real_sip_options = merge (
+    $asterisk::params::sip_options,
+    $sip_options
+  )
+
   validate_array($real_sip_options['allow'])
   validate_array($real_sip_options['disallow'])
   validate_array($real_sip_options['domain'])
@@ -86,6 +110,21 @@ class asterisk (
     true  => 'yes',
     false => 'no',
   }
+
+  $real_realtime_options = merge(
+    $asterisk::params::realtime_options,
+    $realtime_options
+  )
+
+  $real_logger_options = merge(
+    $asterisk::params::logger_options,
+    $logger_options
+  )
+
+  $real_mysql_options = merge(
+    $asterisk::params::mysql_options,
+    $mysql_options
+  )
 
   # Anchor this as per #8040 - this ensures that classes won't float off and
   # mess everything up. You can read about this at:

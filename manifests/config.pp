@@ -19,6 +19,11 @@ class asterisk::config {
     ],
   }
 
+  augeas_base::settings_to_file{'/etc/asterisk/asterisk.conf':
+    config_file => '/etc/asterisk/asterisk.conf',
+    settings => $asterisk::real_asterisk_options
+  }
+
   $iax_options = $asterisk::real_iax_options
   asterisk::dotd { '/etc/asterisk/iax':
     additional_paths => ['/etc/asterisk/iax.registry.d'],

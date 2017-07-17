@@ -9,6 +9,24 @@ class asterisk::params {
 
   $confdir = '/etc/asterisk'
 
+  $asterisk_runuser_grp = 'asterisk'
+  $asterisk_options = {
+    'directories/astetcdir' => $confdir,
+    'options/timestamp' => 'yes',
+    'options/highpriority' => 'yes',
+    'options/dumpcore' => 'yes',
+    'options/transmit_silence_during_record' => 'yes',
+    'options/transmit_silence' => 'yes',
+    'options/runuser' => $asterisk_runuser_grp,
+    'options/rungroup' => $asterisk_runuser_grp,
+    'options/documentation_language' => 'en_US',
+    'options/hideconnect' => 'yes',
+    'files/astctlpermissions' => '0660',
+    'files/astctlowner' => $asterisk_runuser_grp,
+    'files/astctlgroup' => $asterisk_runuser_grp,
+    'files/astctl' => 'asterisk.ctl',
+  }
+
   $iax_options = {
     'allow'             => [],
     'disallow'          => ['lpc10'],
@@ -94,6 +112,35 @@ class asterisk::params {
   $manager_enable = true
   $manager_port = 5038
   $manager_bindaddr = '127.0.0.1'
+
+  $realtime_options = {
+    'sipusers' => 'mysql,general,sipfriends',
+    'sippeers' => 'mysql,general,sipfriends'
+  }
+
+  $logger_options = {
+    'general' => {
+      'queue_log' => 'yes',
+      'event_log' => 'yes',
+      'dateformat' => '%F %T.%3q',
+      'appendhostname' => 'yes'
+    },
+    'files' => {
+      'debug' => 'debug',
+      'console' => 'notice,warning,error',
+      'messages' => 'notice,warning,error',
+      'full' => 'notice,warning,error,debug,verbose',
+    }
+  }
+
+  $mysql_options = {
+    'general' => {
+      'dbcharset' => 'utf8',
+      'requirements' => 'createclose',
+      'dbport' => '3306'
+    }
+  }
+
 
   #### Internal module values
 
