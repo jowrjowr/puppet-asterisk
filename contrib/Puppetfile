@@ -1,4 +1,7 @@
 forge 'http://forge.puppetlabs.com'
 
-mod 'puppetlabs/stdlib'
-mod 'dillec/augeas_base'
+# don't forget to update spec/spec_helper_acceptance.rb accordingly
+#
+mod 'puppetlabs-concat', '4.0.1'
+mod 'puppetlabs-stdlib', '4.17.1'
+mod 'puppet-yum', '0.9.15'

@@ -1,0 +1,64 @@
+<%- | Hash $data,
+      String $sep,
+      Boolean $is_template,
+      String $array_separator,
+      Hash $special_separator_fields,
+| -%>
+<%#
+ #
+ # Template especially for chan_dahdi, since the syntax with the groups is to hard for the default template
+ #
+-%>
+[channels]
+<%-
+$data['global'].each |String $key, NotUndef $value| {
+    $_sep = has_key($special_separator_fields, $key) ? {
+        true    => $special_separator_fields[$key],
+        false   => $sep
+    }
+
+    if $value =~ Boolean {
+-%>
+<%= $key %> <%= $_sep %> <%= bool2str($value, 'yes', 'no') %>
+<%-
+    }
+    elsif $value =~ Array {
+-%>
+<%= $key %> <%= $_sep %> <%= join($value, $array_separator) %>
+<%-
+    }
+    else {
+-%>
+<%= $key %> <%= $_sep %> <%= $value %>
+<%-
+    }
+}
+
+$data['groups'].each |Integer $group, Hash $options| { -%>
+
+group=<%= $group %>
+<%
+    $options.each |String $key, NotUndef $value| {
+        $_sep = has_key($special_separator_fields, $key) ? {
+            true    => $special_separator_fields[$key],
+            false   => $sep
+        }
+
+        if $value =~ Boolean {
+-%>
+<%= $key %> <%= $_sep %> <%= bool2str($value, 'yes', 'no') %>
+<%-
+        }
+        elsif $value =~ Array {
+-%>
+<%= $key %> <%= $_sep %> <%= join($value, $array_separator) %>
+<%-
+        }
+        else {
+-%>
+<%= $key %> <%= $_sep %> <%= $value %>
+<%-
+        }
+    }
+}
+%>

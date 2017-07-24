@@ -1,28 +1,30 @@
 {
-  "name": "LeLutin-asterisk",
-  "version": "1.0.2",
-  "author": "LeLutin",
+  "name": "dillec-asterisk",
+  "version": "0.5.0-beta",
+  "author": "dillec",
   "summary": "Install and configure the Asterisk PBX service",
   "license": "GPL-3.0+",
-  "source": "https://github.com/lelutin/puppet-asterisk",
-  "project_page": "https://github.com/lelutin/puppet-asterisk",
-  "issues_url": "https://github.com/lelutin/puppet-asterisk/issues",
+  "source": "https://github.com/diLLec/puppet-asterisk",
+  "project_page": "https://github.com/diLLec/puppet-asterisk",
+  "issues_url": "https://github.com/diLLec/puppet-asterisk/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 3.0.0"},
-    {"name":"diLLec-augeas_base","version_requirement":">= 0.0.0"}
+    {"name":"puppetlabs-stdlib","version_requirement":"4.17.1"},
+    {"name":"puppetlabs-concat","version_requirement":"4.0.1"}
+
   ],
   "operatingsystem_support": [
-    {
-      "operatingsystem": "Debian",
-      "operatingsystemrelease":[ "7", "8" ]
-    },
     { "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "6",
         "7"
       ]
-    },
+    }
   ],
-  "tags": ["asterisk", "sip", "iax", "PBX", "VoIP"]
+  "tags": [
+    "asterisk",
+    "puppet-module",
+    "puppet",
+    "puppet-forge"
+  ]
 }
 

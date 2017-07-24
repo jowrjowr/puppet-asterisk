@@ -1,20 +1,16 @@
 # Ensure the Asterisk service is running.
 #
-# FIXME: why are we disabling the service when $manage_service is set to false?
-# this does not make any sense.
-#
 class asterisk::service {
-  $manage_service = $asterisk::manage_service
-
-  if $manage_service {
-    service {$asterisk::service_name:
-      ensure  => running,
-    }
-  } else {
-    service {$asterisk::service_name:
-      enable  => false,
+  if $asterisk::real_manage_service['manage_service'] {
+    service { $asterisk::real_manage_service['service_name']:
+      ensure     => running,
+      hasrestart => true,
     }
 
+    if has_key($asterisk::real_manage_service, 'service_restart_command') {
+      Service[$asterisk::real_manage_service['service_name']] {
+        restart => $asterisk::real_manage_service['service_restart_command']
+      }
+    }
   }
-
 }

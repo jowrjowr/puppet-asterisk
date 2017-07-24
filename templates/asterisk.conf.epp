@@ -1,0 +1,16 @@
+<%- | Hash $data
+| -%>
+<%
+$data.each |String $section, Hash $subopts| { -%>
+[<%= $section %>]<% if $subopts['__template'] { -%>(!)<% } %>
+<%    $subopts.each |String $key, $value| { -%>
+<%        if $key != '__template' and $key != '__sign' { -%>
+<%          if defined($subopts['__sign']) { -%>
+    <%= $key %> <%= $subopts['__sign'] %> <%= $value %>
+<%          }
+            else { %>
+    <%= $key %> = <%= $value %>
+<%          }
+         }
+      }
+} -%>

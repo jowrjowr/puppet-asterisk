@@ -1,0 +1,54 @@
+<%- | Hash $data,
+      String $sep,
+      Boolean $is_template,
+      String $array_separator,
+      Hash $special_separator_fields,
+| -%>
+<%-
+$data.each |String $section, NotUndef $options| {
+    if $options =~ Array[String] {
+        $options.each |String $item| {
+-%>
+<%= $section %> <%= $sep %> <%= $item %>
+<%-
+        }
+    }
+    else {
+-%>
+[<%= $section %>]<% if $is_template { -%>(!)<% } %>
+<%-
+        $options.each |String $key, NotUndef $value| {
+-%>
+<%-
+            $_sep = has_key($special_separator_fields, $key) ? {
+                true    => $special_separator_fields[$key],
+                false   => $sep
+            }
+
+            if $value =~ Boolean {
+-%>
+<%= $key %> <%= $_sep %> <%= bool2str($value, 'yes', 'no') %>
+<%-
+            }
+            elsif $value =~ Array and !empty($value) {
+-%>
+<%= $key %> <%= $_sep %> <%= join($value, $array_separator) %>
+<%-
+            }
+            elsif ($value =~ String and !empty($value)) or $value =~ Integer {
+-%>
+<%= $key %> <%= $_sep %> <%= $value %>
+<%-
+            }
+            else {
+-%>
+; unknown/empty puppet var: <%= $key %> <%= $_sep %> <%= $value %>
+<%-
+            }
+        }
+-%>
+
+<%
+    }
+}
+-%>

@@ -1,0 +1,11 @@
+<%- | String $hostname,
+      String $module,
+      String $template
+| -%>
+;;;                 FILE MANAGED WITH PUPPET
+;;;   !! CHANGES WILL BE OVERWRITTEN BY NEXT PUPPET RUN !!
+;
+;; Served by:        '<%= $hostname %>'
+;; Module:           '<%= $module %>'
+;; Module:           '<%= $template %>'
+;

@@ -1,0 +1,13 @@
+[<%= $iax_user -%>]
+<%
+$iax_user_options.each |String $name, String $value| {
+  if $value =~ Array {
+    $value.each |String $v| { -%>
+        <%= $name -%>=<%= $v %>
+<%  }
+  }
+  else { -%>
+    <%= $name -%> = <%= $value %>
+<%
+  }
+} -%>

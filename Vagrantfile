@@ -2,7 +2,7 @@
 #  note that environment variables need to be passed to vagrant up/provision
 
 Vagrant.configure('2') do |config|
-  config.vm.box = 'bento/centos-7.2'
+  config.vm.box = 'bento/centos-7.3'
 
   config.vm.hostname = 'puppet-module-asterisk'
   config.vm.provider 'virtualbox' do |v|
@@ -10,13 +10,13 @@ Vagrant.configure('2') do |config|
     v.cpus = 2
   end
 
-  module_base_directory = '/etc/puppet/modules/puppet-asterisk'
+  module_base_directory = '/etc/puppet/modules/asterisk'
   config.vm.synced_folder '.', module_base_directory, type: 'virtualbox'
 
   if ENV['http_proxy']
     if Vagrant.has_plugin?('vagrant-proxyconf')
-      config.proxy.http     = ENV['http_proxy']
-      config.proxy.https    = ENV['http_proxy']
+      config.proxy.http     = ['http://', ENV['http_proxy']].join('')
+      config.proxy.https    = ['http://', ENV['http_proxy']].join('')
       config.proxy.no_proxy = ENV['no_proxy']
     end
   end

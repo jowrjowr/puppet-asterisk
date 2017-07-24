@@ -1,6 +1,24 @@
-Puppet module for Asterisk
-==========================
+# Puppet module for Asterisk
 
+![Travis Build State](https://travis-ci.org/diLLec/puppet-asterisk.svg?branch=master)
+
+#### Table of Contents
+1. [Description](#description)
+1. [Setup - The basics of getting started with asterisk module](#setup)
+    * [Setup requirements](#references)
+    * [How to configure asterisk - Parameters to the asterisk class](#How_to_configure_asterisk_-_Parameters_to_the_asterisk_class)
+    * [How to configure elements - IAX/SIP and so on](#How_to_configure_elements_-_IAX/SIP_and_so_on)
+
+## Description
+This module will install and configure a basic asterisk instance, which is already ready to use. It provides
+extensive access to the configuration files of asterisk via class parameters and defines to configure singled out
+elements like sip/iax registrations or extensions and so on.   
+
+This module does not abstract alot of the options and names given by asterisk, since it was designed to enable 
+fast and individually configurable instances. 
+
+## Setup
+### How to install
 To install Asterisk on a server, simply use the following:
 
 ```puppet
@@ -10,21 +28,7 @@ include asterisk
 This will install a plain version of Asterisk without any extra
 features enabled.
 
-Users that are upgrading (e.g. switching or merging to current master) should
-consult the section named [Upgrade notices](#upgrade-notices) near the end.
-
-Requirements
-------------
-
-In order to use this module, you need the stdlib module from:
-
-https://github.com/puppetlabs/puppetlabs-stdlib
-
-You should also make sure that augeas is installed since it is used to enable
-the service in `/etc/default/asterisk`.
-
-Reference reading
------------------
+### References
 
 Some good references to consult when it comes to Asterisk configuration are:
 
@@ -37,55 +41,20 @@ Some good references to consult when it comes to Asterisk configuration are:
  * A good reference for VoIP and Asterisk (some information might be outdated):
    http://www.voip-info.org/
  * The Asterisk project wiki: https://wiki.asterisk.org/
+ 
+Module origin: This module is based on the work of LeLutin, who build the 
+  * LeLutin/asterisk module: https://forge.puppet.com/LeLutin/asterisk
 
-Configuring Asterisk
-====================
+### How to configure asterisk - Parameters to the asterisk class
+The main class has a couple of parameters that configure and manage the asterisk environment.
+Note that the current implementation orients on the asterisk configuration and does only  
+abstract where needed. Please see the code/puppet-strings documentation here
 
-Parameters to the asterisk class
---------------------------------
+* TODO: write+generate puppet-strings in-code doc
 
-The main class has a couple of parameters that determine what is managed and
-how general configuration is set.
+There are default values for all configuration parameters in the `asterisk::params` class.  
 
-  * `$manage_service` is a boolean that determines whether puppet will ensure
-    that the service is running. Default value is true.
-
-  * `$manage_package` is a boolean that determines whether puppet will ensure
-    that the package is installed. Default value is true.
-
-  * `$package_name` can be used to override the name of the package that
-    installs Asterisk. Default value is "asterisk".
-
-  * `$service_name` can be used to override the name of the Asterisk service.
-    Default value is "asterisk".
-
-  * `$confdir` can be used to override the path to the Asterisk configuration.
-    Default value is "/etc/asterisk".
-
-  * `$iax_options` is a hash of global options for IAX2. See section IAX2
-    Options.
-
-  * `$sip_options` is a hash of global options for SIP. See section SIP Options.
-
-  * `$voicemail_options` is a hash of global options for voicemail. See section
-    Voicemail Options.
-
-  * `$extensions_options` is a hash of global options for extensions. See
-    section Extensions Options.
-
-  * `$agents_multiplelogin` and `$agents_options` are detailed in the Agents
-    Options section.
-
-  * `$features_options` and `$featuremap` are detailed in the Features Options
-    section.
-
-  * `$queues_options` is detailed in the Queues Options section.
-
-  * `$modules_autoload`, `$modules_noload`, `$modules_load` and
-    `$modules_global_options` are detailed in the Modules section.
-
-  * `$manager_enable`, `$manager_port` and `$manager_bindaddr` are detailed in
-    the Manager Options section.
+### How to configure elements - IAX/SIP and so on
 
 ### Setting options with the $xyz_options parameters ###
 
@@ -713,28 +682,6 @@ to a device):
 Upgrade notices
 ===============
 
- * The module used to manage files under /etc/asterisk/file.conf.d
-   for all values of "file" that were managed. Things have been moved to
-   /etc/asterisk/file.d, so before upgrading you should remove all .conf.d
-   directories (all files under the old dirs will be automatically recreated in
-   the new directories).
-
- * The defines that were previously named asterisk::context::xyz (or
-   transitorily asterisk::snippet::xyz) are now named asterisk::xyz. Users will
-   need to adjust their manifests to upgrade.
-
- * The `queues_monitor_type` and `queues_monitor_format` parameters to the
-   default class were removed in favor of using quoted strings in the options
-   array. Users who used those two options need to place their values in the
-   `$queues_options` hash with 'monitor-type' and 'monitor-format' strings as
-   keys, respectively. To ensure that 'monitor-type' is not present in the
-   config file, simply leave it out (as opposed to the previous behaviour of
-   the option that required an empty string for this).
-
- * Some default values were removed and some others were modified to be closer
-   to default Debian config files. You should verify that new values or
-   variables that disappear won't have an impact on your setup.
-
 Patches and Testing
 ===================
 
@@ -758,11 +705,8 @@ patches pass tests:
 
 
 Still not implemented !
------------------------
+=======================
 
-Types:
-
-  * `asterisk::mwi`
 
 License
 =======
