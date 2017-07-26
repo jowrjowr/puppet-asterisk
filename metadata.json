@@ -9,8 +9,8 @@
   "issues_url": "https://github.com/diLLec/puppet-asterisk/issues",
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":"4.17.1"},
-    {"name":"puppetlabs-concat","version_requirement":"4.0.1"}
-
+    {"name":"puppetlabs-concat","version_requirement":"4.0.1"},
+    {"name":"puppet-yum","version_requirement":"0.9.15"}
   ],
   "operatingsystem_support": [
     { "operatingsystem": "RedHat",
