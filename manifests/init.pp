@@ -26,7 +26,7 @@ class asterisk (
     'manage_package'     => Optional[Boolean],
     'package_name'       => Optional[String],
     'manage_directories' => Optional[Boolean],
-    'manage_repos'       => Optional[Enum['all', 'only-asterisk']],
+    'manage_repos'       => Optional[Enum['all', 'only-asterisk', 'none']],
   }] $manage_package                             = $asterisk::params::manage_package,
   Stdlib::Absolutepath $confdir                  = $asterisk::params::confdir,
   Struct[{

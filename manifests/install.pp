@@ -12,7 +12,8 @@ class asterisk::install {
       "${asterisk::real_manage_package['package_name']}-iax2",
       "${asterisk::real_manage_package['package_name']}-sip",
       "${asterisk::real_manage_package['package_name']}-snmp"],
-      { 'provider' => 'yum',
+      {
+        'provider' => 'yum',
         'ensure'   => 'present',
         'require'  => [
           Yumrepo['asterisk-common'],
