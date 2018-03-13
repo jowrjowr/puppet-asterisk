@@ -1,6 +1,6 @@
 {
   "name": "dillec-asterisk",
-  "version": "0.5.0-beta",
+  "version": "0.5.2-beta",
   "author": "dillec",
   "summary": "Install and configure the Asterisk PBX service",
   "license": "GPL-3.0+",
