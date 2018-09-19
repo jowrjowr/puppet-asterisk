@@ -242,10 +242,6 @@ class asterisk::config {
     }
   }
 
-  asterisk::util::settings_to_file { "${asterisk::confdir}/http.conf":
-    standardsettings => $asterisk::params::http_config,
-  }
-
   $module_path = get_module_path($module_name)
   augeas { "${asterisk::confdir}/indications.conf":
     changes   => [
@@ -278,6 +274,24 @@ class asterisk::config {
 
   asterisk::util::settings_to_file { "${asterisk::confdir}/acl.conf":
     standardsettings => {},
+  }
+
+  asterisk::util::settings_to_file { "${asterisk::confdir}/http.conf":
+    standardsettings => { 'general' => $asterisk::real_http_config['general'] },
+  }
+
+  asterisk::util::settings_to_file { "${asterisk::confdir}/festival.conf":
+    standardsettings => { 'general' => $asterisk::real_festival_config['general'] },
+  }
+  asterisk::util::settings_to_file { "${asterisk::confdir}/codecs.conf":
+    standardsettings => { 
+        'speex'     => $asterisk::real_codecs_config['speex'],
+        'plc'       => $asterisk::real_codecs_config['plc'],
+        'silk8'     => $asterisk::real_codecs_config['silk8'],
+        'silk12'    => $asterisk::real_codecs_config['silk12'],
+        'silk16'    => $asterisk::real_codecs_config['silk16'],
+        'silk24'    => $asterisk::real_codecs_config['silk24'],
+    },
   }
 
   #

@@ -113,7 +113,22 @@ class asterisk (
     'general'             => Hash[String, NotUndef],
     'ice_host_candidates' => Optional[Hash[String, NotUndef]],
     'udptl'               => Optional[Hash[String, NotUndef]],
-  }] $rtp_config                                = $asterisk::params::rtp_config
+  }] $rtp_config                                = $asterisk::params::rtp_config,
+  Struct[{
+    'general'             => Hash[String, NotUndef],
+  }] $http_config                                = $asterisk::params::http_config,
+  Struct[{
+    'general'             => Hash[String, NotUndef],
+  }] $festival_config                                = $asterisk::params::festival_config,
+  Struct[{
+    'speex'             => Optional[Hash[String, NotUndef]],
+    'plc'               => Optional[Hash[String, NotUndef]],
+    'silk8'             => Optional[Hash[String, NotUndef]],
+    'silk12'            => Optional[Hash[String, NotUndef]],
+    'silk16'            => Optional[Hash[String, NotUndef]],
+    'silk24'            => Optional[Hash[String, NotUndef]],
+  }] $codecs_config                                = $asterisk::params::codecs_config
+
 ) inherits asterisk::params {
 
   $real_manage_service = deep_merge_extended(
@@ -212,6 +227,21 @@ class asterisk (
   $real_rtp_config = deep_merge_extended (
     $asterisk::params::rtp_config,
     $rtp_config
+  )
+
+  $real_http_config = deep_merge_extended(
+    $asterisk::params::http_config,
+    $http_config
+  )
+
+  $real_festival_config = deep_merge_extended(
+    $asterisk::params::festival_config,
+    $festival_config
+  )
+
+  $real_codecs_config = deep_merge_extended(
+    $asterisk::params::codecs_config,
+    $festival_config
   )
 
   # Anchor this as per #8040 - this ensures that classes won't float off and

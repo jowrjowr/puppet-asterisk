@@ -495,4 +495,61 @@ class asterisk::params {
     },
   }
 
+
+  $festival_config = {
+    'general' => {},
+  }
+
+  $codecs_config = {
+    'speex'   => {
+      'quality'           => '3',
+      'complexity'        => '2',
+      'enhancement'       => 'true',
+      'vad'               => 'true',
+      'vbr'               => 'true',
+      'abr'               => '0',
+      'vbr_quality'       => '4',
+      'dtx'               => 'false',
+      'preprocess'        => 'false',
+      'pp_vad'            => 'false',
+      'pp_agc'            => 'false',
+      'pp_agc_level'      => '8000',
+      'pp_denoise'        => 'false',
+      'pp_dereverb'       => 'false',
+      'pp_dereverb_decay' => '0.4',
+      'pp_dereverb_level' => '0.3',
+    },
+    'plc'   => {
+      'genericplc'        => 'true',
+    },
+    'silk8' => {
+      'type'                  => 'silk',
+      'samprate'              => '8000',
+      'fec'                   => 'true',
+      'packetloss_percentage' => '10',
+      'maxbitrate'            => '10000',
+    },
+    'silk12' => {
+      'type'                  => 'silk',
+      'samprate'              => '12000',
+      'maxbitrate'            => '12000',
+      'fec'                   => 'true',
+      'packetloss_percentage' => '10',
+    },
+    'silk16' => {
+      'type'                  => 'silk',
+      'samprate'              => '16000',
+      'maxbitrate'            => '20000',
+      'fec'                   => 'true',
+      'packetloss_percentage' => '10',
+    },
+    'silk24' => {
+      'type'                  => 'silk',
+      'samprate'              => '24000',
+      'maxbitrate'            => '30000',
+      'fec'                   => 'true',
+      'packetloss_percentage' => '10',
+    },
+  }
+
 }
