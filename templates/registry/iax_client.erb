@@ -3,20 +3,27 @@
 ; see:
 ; https://www.voip-info.org/asterisk-readme-iax
 
-[<%= @identifier -%>]
-type = <%= @type -%>
+[<%= @identifier %>]
+type = <%= @type %>
 <%- if @type == 'user' -%>
     <%- @user_vars.each do |var| -%>
-        <%- if @var -%>
-<%= var %> = <%= @var %>
-<%- end end end %>
+        <%- if scope.lookupvar(var) -%>
+<%= var %> = <%= scope.lookupvar(var) %>
+        <%- end -%>
+    <%- end -%>
+<%- end -%>
+
+<%- if @type == 'friend' -%>
+    <%- @friend_vars.each do |var| -%>
+        <%- if scope.lookupvar(var) -%>
+<%= var %> = <%= scope.lookupvar(var) %>
+        <%- end -%>
+    <%- end -%>
+<%- end -%>
 <%- if @type == 'peer' -%>
     <%- @peer_vars.each do |var| -%>
-        <%- if @var -%>
-<%= var %> = <%= @var %>
-<%- end end end %>
-<%- if @type == 'user' -%>
-    <%- @friend_vars.each do |var| -%>
-        <%- if @var -%>
-<%= var %> = <%= @var %>
-<%- end end end %>
+        <%- if scope.lookupvar(var) -%>
+<%= var %> = <%= scope.lookupvar(var) %>
+        <%- end -%>
+    <%- end -%>
+<%- end %>
