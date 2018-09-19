@@ -24,6 +24,8 @@ define asterisk::util::dotd (
     owner   => 'root',
     group   => 'asterisk',
     mode    => '0750',
+    purge   => true,
+    recurse => true,
     require => Class['asterisk::install'],
   }
 
