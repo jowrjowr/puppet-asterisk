@@ -41,6 +41,7 @@ class asterisk::install {
       }
       -> file { $dir:
         ensure => 'directory',
+        purge  => true,
         mode   => $asterisk::params::default_directory_perm,
         owner  => $asterisk::params::asterisk_runuser_grp,
         group  => $asterisk::params::asterisk_runuser_grp,

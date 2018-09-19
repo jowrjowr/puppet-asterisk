@@ -149,8 +149,6 @@ class asterisk::params {
       'res_smdi.so',
       'app_confbridge.so',
       'res_phoneprov.so',
-      'app_amd.so',
-      'app_alarmreceiver.so',
       'pbx_gtkconsole.so',
       'pbx_kdeconsole.so',
       'app_intercom.so',
@@ -176,7 +174,6 @@ class asterisk::params {
     'res_config_odbc.so'   => ['res_odbc.conf'],
     'app_amd.so'           => ['amd.conf'],
     'cdr_sqlite.so'        => ['cdr_sqlite.conf'],
-    'app_mysql.so'         => ['app_mysql.conf'],
     'pbx_dundi.so'         => ['dundi.conf'],
     'app_confbridge.so'    => ['confbridge.conf'],
     'app_followme.so'      => ['followme.conf'],
@@ -495,8 +492,11 @@ class asterisk::params {
     },
   }
 
-
   $festival_config = {
+    'general' => {},
+  }
+
+  $amd_config = {
     'general' => {},
   }
 
@@ -549,6 +549,13 @@ class asterisk::params {
       'maxbitrate'            => '30000',
       'fec'                   => 'true',
       'packetloss_percentage' => '10',
+    },
+  }
+
+  $app_mysql_config = {
+    'general' => {
+        'nullvalue'     => 'nullstring',
+        'autoclear'     => 'yes',
     },
   }
 

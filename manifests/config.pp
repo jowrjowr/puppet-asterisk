@@ -35,6 +35,7 @@ class asterisk::config {
     standardsettings => $asterisk::real_iax_options,
     includes         => [
       "${asterisk::confdir}/iax.registry.d",
+      "${asterisk::confdir}/iax.clients.d",
       "${asterisk::confdir}/iax.d",
     ],
   }
@@ -282,6 +283,12 @@ class asterisk::config {
 
   asterisk::util::settings_to_file { "${asterisk::confdir}/festival.conf":
     standardsettings => { 'general' => $asterisk::real_festival_config['general'] },
+  }
+  asterisk::util::settings_to_file { "${asterisk::confdir}/app_mysql.conf":
+    standardsettings => { 'general' => $asterisk::real_app_mysql_config['general'] },
+  }
+  asterisk::util::settings_to_file { "${asterisk::confdir}/amd.conf":
+    standardsettings => { 'general' => $asterisk::real_amd_config['general'] },
   }
   asterisk::util::settings_to_file { "${asterisk::confdir}/codecs.conf":
     standardsettings => { 

@@ -121,6 +121,12 @@ class asterisk (
     'general'             => Hash[String, NotUndef],
   }] $festival_config                                = $asterisk::params::festival_config,
   Struct[{
+    'general'             => Hash[String, NotUndef],
+  }] $app_mysql_config                                = $asterisk::params::app_mysql_config,
+  Struct[{
+    'general'             => Optional[Hash[String, NotUndef]],
+  }] $amd_config                                = $asterisk::params::amd_config,
+  Struct[{
     'speex'             => Optional[Hash[String, NotUndef]],
     'plc'               => Optional[Hash[String, NotUndef]],
     'silk8'             => Optional[Hash[String, NotUndef]],
@@ -239,9 +245,19 @@ class asterisk (
     $festival_config
   )
 
+  $real_amd_config = deep_merge_extended(
+    $asterisk::params::amd_config,
+    $amd_config
+  )
+
+  $real_app_mysql_config = deep_merge_extended(
+    $asterisk::params::app_mysql_config,
+    $app_mysql_config
+  )
+
   $real_codecs_config = deep_merge_extended(
     $asterisk::params::codecs_config,
-    $festival_config
+    $codecs_config
   )
 
   # Anchor this as per #8040 - this ensures that classes won't float off and
