@@ -29,7 +29,6 @@ define asterisk::cfg::iax_client (
   $user_vars = [ 'context', 'permit', 'deny', 'callerid', 'auth', 'secret', 'inkeys' ]
   $peer_vars = [ 'allow', 'disallow', 'host', 'defaultip' ]
   $friend_vars = $user_vars + $peer_vars
-  notice($context)
   asterisk::util::dotdfile { "client_${name}.conf":
     ensure   => $ensure,
     dotd_dir => 'iax.clients.d',
