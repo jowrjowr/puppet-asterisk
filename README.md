@@ -558,12 +558,12 @@ Asterisk can expose an interface for managing the PBX. This interface can be
 offered to different users with different permissions. You can configure read
 and write access to certain features of the PBX for each user.
 
-The `asterisk::manager` defined type helps you configure a manager access. The
+The `asterisk::cfg::manager` defined type helps you configure a manager access. The
 `secret` parameter is mandatory. By default, the resource name is used as the
 manager name:
 
 ```puppet
-asterisk::manager { 'nagios':
+asterisk::cfg::manager { 'nagios':
   secret => 'topsecret1234',
   read   => ['all'],
   write  => ['system', ' call', ' log', ' verbose', ' command', ' agent', ' user'],
@@ -574,7 +574,7 @@ Here's a paranoid version of the above configuration, with minimal network
 access, but the option to run system commands and trigger calls:
 
 ```puppet
-asterisk::manager { 'nagios':
+asterisk::cfg::manager { 'nagios':
   secret => 'topsecret1234',
   read   => ['system', 'call'],
   write  => ['system', 'call'],
@@ -584,7 +584,7 @@ asterisk::manager { 'nagios':
 Here, we permit remote management to two other systems on an internal network:
 
 ```puppet
-asterisk::manager { 'robocall':
+asterisk::cfg::manager { 'robocall':
   secret => 'robotsdeservesomeloveafterall',
   permit => ['10.10.10.200/255.255.255.0', '10.20.20.200/255.255.255.0'],
   read   => ['system', 'call', 'log'],
@@ -595,7 +595,7 @@ asterisk::manager { 'robocall':
 To override the manager name, you can use the `manager_name` parameter:
 
 ```puppet
-asterisk::manager { 'sysadmin':
+asterisk::cfg::manager { 'sysadmin':
   secret       => 'nowyouseemenowyoudont',
   read         => ['all'],
   write        => ['all'],
@@ -620,7 +620,7 @@ class.
    manager should bind. Default value is 127.0.0.1.
 
 By default, no user access is configured. If you want to enable users to
-interact with the manager, you should declare `asterisk::manager`
+interact with the manager, you should declare `asterisk::cfg::manager`
 resources.
 
 Dahdi
