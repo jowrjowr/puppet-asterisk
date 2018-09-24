@@ -48,7 +48,9 @@ class asterisk (
     'general' => Hash[String, NotUndef]
   }]  $voicemail_options                         = $asterisk::params::voicemail_options,
   Struct[{
-    'general' => Hash[String, NotUndef]
+    'general' => Hash[String, NotUndef],
+    'globals' => Optional[Hash[String, NotUndef]],
+
   }]  $extensions_options                        = $asterisk::params::extensions_options,
   Struct[{
     'general'      => Hash[String, NotUndef],
