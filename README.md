@@ -325,11 +325,11 @@ $voicemail_options = {
 Extensions
 ----------
 
-Extensions can be set with the `asterisk::extensions` defined type. `source` or
+Extensions can be set with the `asterisk::cfg::extension` defined type. `source` or
 `content` can be used with this type.
 
 ```puppet
-asterisk::extensions { 'incoming':
+asterisk::cfg::extension { 'incoming':
   ensure  => present,
   content => template('site_asterisk/extensions/incoming.erb'),
 }
@@ -352,7 +352,7 @@ $extensions_options = {
 
 Note that by default no global variables (e.g. values set in the `[globals]`
 context) are set. To set global variables, you can use an
-`asterisk::extensions` resource with a context value of "globals".
+`asterisk::cfg::extension` resource with a context value of "globals".
 
 Agents
 ------
