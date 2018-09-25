@@ -9,8 +9,8 @@
 #
 define asterisk::cfg::extension (
   Enum['present', 'absent'] $ensure = present,
-  String $source = '',
-  String $content = '',
+  $source = undef,
+  $content = undef,
 ) {
 
   if $source {
