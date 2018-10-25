@@ -193,7 +193,6 @@ class asterisk::params {
     'muted.conf',
     'osp.conf',
     'sla.conf',
-    'sorcery.conf',
     'ss7.timers',
     'telcordia-1.adsi',
     'ccss.conf',
@@ -446,6 +445,7 @@ class asterisk::params {
     'general' => {
       'cachertclasses' => false,
     },
+    'default' => {},
   }
 
   $stun_config = {
@@ -558,5 +558,4 @@ class asterisk::params {
         'autoclear'     => 'yes',
     },
   }
-
 }

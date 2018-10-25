@@ -195,8 +195,12 @@ class asterisk::config {
   }
 
   # TODO: create a defined to add moh asterisk::cfg:: define
+
   asterisk::util::settings_to_file { "${asterisk::confdir}/musiconhold.conf":
-    standardsettings => $asterisk::params::moh_config,
+    standardsettings => { 
+        'general'    => $asterisk::real_moh_config['general'],
+        'default'    => $asterisk::real_moh_config['default'],
+    },
     includes         => ["${asterisk::confdir}/musiconhold.d"],
   }
 

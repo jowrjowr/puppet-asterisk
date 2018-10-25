@@ -45,7 +45,9 @@ class asterisk (
     Hash[String, NotUndef]
   ] $sip_notifies                                = $asterisk::params::sip_notifies,
   Struct[{
-    'general' => Hash[String, NotUndef]
+    'general' => Hash[String, NotUndef],
+    'zonemessages' => Optional[Hash[String, NotUndef]],
+    'default' => Optional[Hash[String, NotUndef]],
   }]  $voicemail_options                         = $asterisk::params::voicemail_options,
   Struct[{
     'general' => Hash[String, NotUndef],
@@ -104,8 +106,8 @@ class asterisk (
   }] $meetme_config                             = $asterisk::params::meetme_config,
   Struct[{
     'enabled' => Boolean,
-    'global'  => Optional[Hash[String, NotUndef]],
     'groups'  => Hash[Integer, Hash[String, NotUndef]],
+    'global'  => Optional[Hash[String, NotUndef]],
   }] $chan_dahdi_config                         = $asterisk::params::chan_dahdi_config,
   Struct[{
     'enabled' => Boolean,
@@ -128,6 +130,10 @@ class asterisk (
   Struct[{
     'general'             => Optional[Hash[String, NotUndef]],
   }] $amd_config                                = $asterisk::params::amd_config,
+  Struct[{
+    'general'             => Optional[Hash[String, NotUndef]],
+    'default'             => Optional[Hash[String, NotUndef]],
+  }] $moh_config                                = $asterisk::params::moh_config,
   Struct[{
     'speex'             => Optional[Hash[String, NotUndef]],
     'plc'               => Optional[Hash[String, NotUndef]],
@@ -250,6 +256,11 @@ class asterisk (
   $real_amd_config = deep_merge_extended(
     $asterisk::params::amd_config,
     $amd_config
+  )
+
+  $real_moh_config = deep_merge_extended(
+    $asterisk::params::moh_config,
+    $moh_config
   )
 
   $real_app_mysql_config = deep_merge_extended(
