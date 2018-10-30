@@ -208,11 +208,20 @@ class asterisk (
     $manager_config
   )
 
-  $real_modules_config = deep_merge_extended(
+
+  # doing this one slightly different to ensure that modules specified for loading aren't
+  # duplicated with an internal noload tht would block a configuration file
+
+  $staging_modules_config = deep_merge_extended(
     $asterisk::params::modules_config,
     $modules_config
   )
 
+  $real_modules_config = {
+    'preload'   => $staging_modules_config['preload'],
+    'noload'    => $staging_modules_config['noload'] - $staging_modules_config['load'],
+    'load'      => $staging_modules_config['load'] - $staging_modules_config['noload'],
+  }
   $real_meetme_config = deep_merge_extended(
     $asterisk::params::meetme_config,
     $meetme_config
@@ -277,7 +286,7 @@ class asterisk (
   # mess everything up. You can read about this at:
   # http://docs.puppetlabs.com/puppet/2.7/reference/lang_containment.html#known-issues
   anchor { 'asterisk::begin': }
-  -> 
+  ->
   case $::operatingsystem {
     'CentOS', 'Fedora', 'Scientific', 'RedHat', 'Amazon', 'OracleLinux': {
         # rhel-based
@@ -296,4 +305,3 @@ class asterisk (
   -> anchor { 'asterisk::end': }
 
 }
-
