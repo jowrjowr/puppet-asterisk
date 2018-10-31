@@ -135,6 +135,10 @@ class asterisk (
     'default'             => Optional[Hash[String, NotUndef]],
   }] $moh_config                                = $asterisk::params::moh_config,
   Struct[{
+    'ENV'                 => Optional[Hash[String, NotUndef]],
+    'asterisk'            => Optional[Hash[String, NotUndef]],
+  }] $res_odbc                                = $asterisk::params::res_odbc_config,
+  Struct[{
     'speex'             => Optional[Hash[String, NotUndef]],
     'plc'               => Optional[Hash[String, NotUndef]],
     'silk8'             => Optional[Hash[String, NotUndef]],
@@ -270,6 +274,11 @@ class asterisk (
   $real_moh_config = deep_merge_extended(
     $asterisk::params::moh_config,
     $moh_config
+  )
+
+  $real_res_odbc_config = deep_merge_extended(
+    $asterisk::params::res_odbc_config,
+    $res_odbc_config
   )
 
   $real_app_mysql_config = deep_merge_extended(

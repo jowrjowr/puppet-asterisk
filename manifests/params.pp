@@ -160,7 +160,6 @@ class asterisk::params {
       'chan_alsa.so',
       'cdr_sqlite.so',
       'app_directory_odbc.so',
-      'res_config_odbc.so',
       'res_config_pgsql.so',
     ],
     'preload'  => [],
@@ -171,7 +170,6 @@ class asterisk::params {
   $absent_configs_on_noload_modules = {
     'app_alarmreceiver.so' => ['alarmreceiver.conf'],
     'res_config_pgsql.so'  => ['res_config_pgsql.conf'],
-    'res_config_odbc.so'   => ['res_odbc.conf'],
     'app_amd.so'           => ['amd.conf'],
     'cdr_sqlite.so'        => ['cdr_sqlite.conf'],
     'pbx_dundi.so'         => ['dundi.conf'],
@@ -557,5 +555,16 @@ class asterisk::params {
         'nullvalue'     => 'nullstring',
         'autoclear'     => 'yes',
     },
+  }
+
+  $res_odbc_config = {
+    'ENV'   => {
+      'INFORMIXSERVER'  => 'my_special_database',
+      'INFORMIXDIR'     => '/opt/informix',
+    },
+    'asterisk'  => {
+      'enabled'         => 'no',
+      'dsn'             => 'asterisk',
+    }
   }
 }

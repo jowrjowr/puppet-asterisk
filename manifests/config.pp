@@ -197,7 +197,7 @@ class asterisk::config {
   # TODO: create a defined to add moh asterisk::cfg:: define
 
   asterisk::util::settings_to_file { "${asterisk::confdir}/musiconhold.conf":
-    standardsettings => { 
+    standardsettings => {
         'general'    => $asterisk::real_moh_config['general'],
         'default'    => $asterisk::real_moh_config['default'],
     },
@@ -295,7 +295,7 @@ class asterisk::config {
     standardsettings => { 'general' => $asterisk::real_amd_config['general'] },
   }
   asterisk::util::settings_to_file { "${asterisk::confdir}/codecs.conf":
-    standardsettings => { 
+    standardsettings => {
         'speex'     => $asterisk::real_codecs_config['speex'],
         'plc'       => $asterisk::real_codecs_config['plc'],
         'silk8'     => $asterisk::real_codecs_config['silk8'],
@@ -303,6 +303,19 @@ class asterisk::config {
         'silk16'    => $asterisk::real_codecs_config['silk16'],
         'silk24'    => $asterisk::real_codecs_config['silk24'],
     },
+  }
+
+  asterisk::util::settings_to_file { "${asterisk::confdir}/res_odbc.conf":
+      specialsettings  => {
+        'ENV' => {
+          'data' => $asterisk::res_odbc_config['ENV'],
+          'sep'  => '=>',
+        },
+        'asterisk' => {
+          'data' => $asterisk::res_odbc_config['asterisk'],
+          'sep'  => '=>',
+        },
+      },
   }
 
   #
