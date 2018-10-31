@@ -216,16 +216,11 @@ class asterisk (
   # doing this one slightly different to ensure that modules specified for loading aren't
   # duplicated with an internal noload tht would block a configuration file
 
-  $staging_modules_config = deep_merge_extended(
+  $real_modules_config = deep_merge_extended(
     $asterisk::params::modules_config,
     $modules_config
   )
 
-  $real_modules_config = {
-    'preload'   => $staging_modules_config['preload'],
-    'noload'    => $staging_modules_config['noload'] - $staging_modules_config['load'],
-    'load'      => $staging_modules_config['load'] - $staging_modules_config['noload'],
-  }
   $real_meetme_config = deep_merge_extended(
     $asterisk::params::meetme_config,
     $meetme_config
