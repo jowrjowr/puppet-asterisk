@@ -137,7 +137,7 @@ class asterisk (
   Struct[{
     'ENV'                 => Optional[Hash[String, NotUndef]],
     'asterisk'            => Optional[Hash[String, NotUndef]],
-  }] $res_odbc                                = $asterisk::params::res_odbc_config,
+  }] $res_odbc_config                           = $asterisk::params::res_odbc_config,
   Struct[{
     'speex'             => Optional[Hash[String, NotUndef]],
     'plc'               => Optional[Hash[String, NotUndef]],
