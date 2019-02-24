@@ -150,7 +150,6 @@ class asterisk::config {
     },
   }
 
-  notice($asterisk::real_cdr_config['backend_special_config'])
   if has_key($asterisk::real_cdr_config['backend_special_config'], 'cdr_mysql') and $asterisk::real_cdr_config['backend_special_config']['cdr_mysql']['enable'] {
     asterisk::util::settings_to_file { "${asterisk::confdir}/cdr_mysql.conf":
       standardsettings => $asterisk::real_cdr_config['backend_special_config']['cdr_mysql']['config'],
