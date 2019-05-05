@@ -145,7 +145,7 @@ class asterisk (
     'silk12'            => Optional[Hash[String, NotUndef]],
     'silk16'            => Optional[Hash[String, NotUndef]],
     'silk24'            => Optional[Hash[String, NotUndef]],
-  }] $codecs_config                                = $asterisk::params::codecs_config
+  }] $codecs_config                                = $asterisk::params::codecs_config,
   Struct[{
     'clear-mwi'             => Optional[Hash[String, NotUndef]],
     'aastra-check-cfg'      => Optional[Hash[String, NotUndef]],
@@ -159,7 +159,7 @@ class asterisk (
     'snom-check-cfg'        => Optional[Hash[String, NotUndef]],
     'snom-reboot'           => Optional[Hash[String, NotUndef]],
     'cisco-check-cfg'       => Optional[Hash[String, NotUndef]],
-  }] $pjsip_notify_config                                = $asterisk::params::pjsip_notify_config
+  }] $pjsip_notify_config                                = $asterisk::params::pjsip_notify_config,
 ) inherits asterisk::params {
 
   $real_manage_service = deep_merge_extended(
