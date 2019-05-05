@@ -554,7 +554,7 @@ class asterisk::params {
     'test_sorcery_section'  => {
       'test'        => 'memory',
     }
-    'test_sorcery_cach'  => {
+    'test_sorcery_cache'  => {
       'test/cache'  => 'test',
       'test'        => 'memory',
     }
