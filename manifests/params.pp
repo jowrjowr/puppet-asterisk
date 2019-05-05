@@ -553,7 +553,7 @@ class asterisk::params {
   $sorcery_config = {
     'test_sorcery_section'  => {
       'test'        => 'memory',
-    }
+    },
     'test_sorcery_cache'  => {
       'test/cache'  => 'test',
       'test'        => 'memory',
