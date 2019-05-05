@@ -585,9 +585,11 @@ class asterisk::params {
     'clear-mwi' => {
       'Event'         => 'message-summary',
       'Content-type'  => 'application/simple-message-summary',
-      'Content'       => 'Messages-Waiting: no',
-      'Content '      => 'Message-Account: sip:asterisk@127.0.0.1',
-      'Content  '      => 'Voice-Message: 0/0 (0/0)',
+      'Content'       => [
+        'Messages-Waiting: no',
+        'Message-Account: sip:asterisk@127.0.0.1',
+        'Voice-Message: 0/0 (0/0)',
+      ],
     },
     'aastra-check-cfg' => {
       'Event'         => 'check-sync'
