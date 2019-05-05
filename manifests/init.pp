@@ -150,6 +150,16 @@ class asterisk (
     'silk24'            => Optional[Hash[String, NotUndef]],
   }] $codecs_config                                = $asterisk::params::codecs_config,
   Struct[{
+    'test_sorcery_section'              => Optional[Hash[String, NotUndef]],
+    'test_sorcery_cache'                => Optional[Hash[String, NotUndef]],
+    'res_mwi_external'                  => Optional[Hash[String, NotUndef]],
+    'res_pjsip'                         => Optional[Hash[String, NotUndef]],
+    'res_pjsip_endpoint_identifier_ip'  => Optional[Hash[String, NotUndef]],
+    'res_pjsip_outbound_publish'        => Optional[Hash[String, NotUndef]],
+    'res_pjsip_pubsub'                  => Optional[Hash[String, NotUndef]],
+    'res_pjsip_publish_asterisk'        => Optional[Hash[String, NotUndef]],
+  }] $sorcery_config                                = $asterisk::params::sorcery_config,
+  Struct[{
     'general'           => Optional[Hash[String, NotUndef]],
     'system'            => Optional[Hash[String, NotUndef]],
     'global'            => Optional[Hash[String, NotUndef]],
@@ -297,6 +307,10 @@ class asterisk (
   $real_privacy_config = deep_merge_extended(
     $asterisk::params::privacy_config,
     $privacy_config
+  )
+  $real_sorcery_config = deep_merge_extended(
+    $asterisk::params::sorcery_config,
+    $sorcery_config
   )
   $real_res_odbc_config = deep_merge_extended(
     $asterisk::params::res_odbc_config,

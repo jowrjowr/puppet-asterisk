@@ -319,6 +319,18 @@ class asterisk::config {
         },
       },
   }
+  asterisk::util::settings_to_file { "${asterisk::confdir}/sorcery.conf":
+    standardsettings => {
+      'test_sorcery_section'              => $asterisk::real_sorcery_config['test_sorcery_section'],
+      'test_sorcery_cache'                => $asterisk::real_sorcery_config['test_sorcery_cache'],
+      'res_mwi_external'                  => $asterisk::real_sorcery_config['res_mwi_external'],
+      'res_pjsip'                         => $asterisk::real_sorcery_config['res_pjsip'],
+      'res_pjsip_endpoint_identifier_ip'  => $asterisk::real_sorcery_config['res_pjsip_endpoint_identifier_ip'],
+      'res_pjsip_outbound_publish'        => $asterisk::real_sorcery_config['res_pjsip_outbound_publish'],
+      'res_pjsip_pubsub'                  => $asterisk::real_sorcery_config['res_pjsip_pubsub'],
+      'res_pjsip_publish_asterisk'        => $asterisk::real_sorcery_config['res_pjsip_publish_asterisk'],
+    }
+  }
   asterisk::util::settings_to_file { "${asterisk::confdir}/pjsip.conf":
     standardsettings => {
       'general'             => $asterisk::real_pjsip_config['general'],
