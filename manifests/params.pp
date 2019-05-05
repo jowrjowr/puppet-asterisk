@@ -555,8 +555,8 @@ class asterisk::params {
       'Event'         => 'message-summary',
       'Content-type'  => 'application/simple-message-summary',
       'Content'       => 'Messages-Waiting: no',
-      'Content'       => 'Message-Account: sip:asterisk@127.0.0.1',
-      'Content'       => 'Voice-Message: 0/0 (0/0)',
+      'Content '      => 'Message-Account: sip:asterisk@127.0.0.1',
+      'Content  '      => 'Voice-Message: 0/0 (0/0)',
     },
     'aastra-check-cfg' => {
       'Event'         => 'check-sync'
