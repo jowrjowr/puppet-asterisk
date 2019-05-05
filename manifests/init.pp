@@ -299,7 +299,7 @@ class asterisk (
     $codecs_config
   )
 
-  $real_pjsip_notify_configg = deep_merge_extended(
+  $real_pjsip_notify_config = deep_merge_extended(
     $asterisk::params::pjsip_notify_config,
     $pjsip_notify_config
   )
