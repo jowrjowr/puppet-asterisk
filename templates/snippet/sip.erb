@@ -7,6 +7,12 @@
 <% if @account_type != false -%>
 type=<%= @account_type %>
 <% end -%>
+<% if @sendrpid != 'no' -%>
+type=<%= @sendrpid %>
+<% end -%>
+<% if @port != '' -%>
+type=<%= @port %>
+<% end -%>
 <% if @username != false -%>
 username=<%= @username %>
 <% end -%>

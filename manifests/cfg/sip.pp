@@ -37,6 +37,8 @@ define asterisk::cfg::sip (
   $encryption    = '',
   $deny          = [],
   $permit        = [],
+  $sendrpid      = 'no',
+  $port          = '',
 ) {
 
   # Ensure that we can iterate over some of the parameters.
