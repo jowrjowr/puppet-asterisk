@@ -39,6 +39,7 @@ define asterisk::cfg::sip (
   $permit        = [],
   $sendrpid      = 'no',
   $port          = '',
+  $progressinband = 'never',
 ) {
 
   # Ensure that we can iterate over some of the parameters.

@@ -11,7 +11,10 @@ type=<%= @account_type %>
 type=<%= @sendrpid %>
 <% end -%>
 <% if @port != '' -%>
-type=<%= @port %>
+port=<%= @port %>
+<% end -%>
+<% if @progressinband != '' -%>
+progressinband=<%= @progressinband %>
 <% end -%>
 <% if @username != false -%>
 username=<%= @username %>
