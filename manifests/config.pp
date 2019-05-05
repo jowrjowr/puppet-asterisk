@@ -294,7 +294,7 @@ class asterisk::config {
     standardsettings => { 'general' => $asterisk::real_amd_config['general'] },
   }
   asterisk::util::settings_to_file { "${asterisk::confdir}/privacy.conf":
-    standardsettings => { 'general' => $asterisk::real_privacy_config['privacy'] },
+    standardsettings => { 'general' => $asterisk::real_privacy_config['general'] },
   }
   asterisk::util::settings_to_file { "${asterisk::confdir}/codecs.conf":
     standardsettings => {
