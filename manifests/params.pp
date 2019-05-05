@@ -557,7 +557,13 @@ class asterisk::params {
     'test_sorcery_cache'  => {
       'test/cache'  => 'test',
       'test'        => 'memory',
-    }
+    },
+    'res_mwi_external'                  => {},
+    'res_pjsip'                         => {},
+    'res_pjsip_endpoint_identifier_ip'  => {},
+    'res_pjsip_outbound_publish'        => {},
+    'res_pjsip_pubsub'                  => {},
+    'res_pjsip_publish_asterisk'        => {},
   }
   $privacy_config = {
     'general' => {
