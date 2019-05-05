@@ -550,6 +550,16 @@ class asterisk::params {
     },
   }
 
+  # leaving empty structure for pjsip config for future use
+  # the sample config is empty so no configuration defaults
+  $pjsip_config = {
+    'general'             => {},
+    'system'              => {},
+    'global'              => {},
+    'transport-tcp'       => {},
+    'transport-udp'       => {},
+    'transport-tls'       => {},
+  }
   $pjsip_notify_config = {
     'clear-mwi' => {
       'Event'         => 'message-summary',

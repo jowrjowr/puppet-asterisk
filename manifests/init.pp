@@ -147,6 +147,14 @@ class asterisk (
     'silk24'            => Optional[Hash[String, NotUndef]],
   }] $codecs_config                                = $asterisk::params::codecs_config,
   Struct[{
+    'general'           => Optional[Hash[String, NotUndef]],
+    'system'            => Optional[Hash[String, NotUndef]],
+    'global'            => Optional[Hash[String, NotUndef]],
+    'transport-tcp'     => Optional[Hash[String, NotUndef]],
+    'transport-udp'     => Optional[Hash[String, NotUndef]],
+    'transport-tls'     => Optional[Hash[String, NotUndef]],
+  }] $pjsip_config                                = $asterisk::params::pjsip_config,
+  Struct[{
     'clear-mwi'             => Optional[Hash[String, NotUndef]],
     'aastra-check-cfg'      => Optional[Hash[String, NotUndef]],
     'aastra-xml'            => Optional[Hash[String, NotUndef]],
@@ -299,6 +307,10 @@ class asterisk (
     $codecs_config
   )
 
+  $real_pjsip_config = deep_merge_extended(
+    $asterisk::params::pjsip_config,
+    $pjsip_config
+  )
   $real_pjsip_notify_config = deep_merge_extended(
     $asterisk::params::pjsip_notify_config,
     $pjsip_notify_config

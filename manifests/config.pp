@@ -316,6 +316,16 @@ class asterisk::config {
         },
       },
   }
+  asterisk::util::settings_to_file { "${asterisk::confdir}/pjsip.conf":
+    standardsettings => {
+      'general'             => $asterisk::real_pjsip_config['general'],
+      'system'              => $asterisk::real_pjsip_config['system'],
+      'global'              => $asterisk::real_pjsip_config['global'],
+      'transport-tcp'       => $asterisk::real_pjsip_config['transport-tcp'],
+      'transport-udp'       => $asterisk::real_pjsip_config['transport-udp'],
+      'transport-tls'       => $asterisk::real_pjsip_config['transport-tls'],
+    }
+  }
   # pjsip_notify.conf
   asterisk::util::settings_to_file { "${asterisk::confdir}/pjsip_notify.conf":
     seperator        => '=>',
