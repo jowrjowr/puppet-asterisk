@@ -146,7 +146,20 @@ class asterisk (
     'silk16'            => Optional[Hash[String, NotUndef]],
     'silk24'            => Optional[Hash[String, NotUndef]],
   }] $codecs_config                                = $asterisk::params::codecs_config
-
+  Struct[{
+    'clear-mwi'             => Optional[Hash[String, NotUndef]],
+    'aastra-check-cfg'      => Optional[Hash[String, NotUndef]],
+    'aastra-xml'            => Optional[Hash[String, NotUndef]],
+    'digium-check-cfg'      => Optional[Hash[String, NotUndef]],
+    'linksys-cold-restart'  => Optional[Hash[String, NotUndef]],
+    'linksys-warm-restart'  => Optional[Hash[String, NotUndef]],
+    'polycom-check-cfg'     => Optional[Hash[String, NotUndef]],
+    'sipura-check-cfg'      => Optional[Hash[String, NotUndef]],
+    'sipura-get-report'     => Optional[Hash[String, NotUndef]],
+    'snom-check-cfg'        => Optional[Hash[String, NotUndef]],
+    'snom-reboot'           => Optional[Hash[String, NotUndef]],
+    'cisco-check-cfg'       => Optional[Hash[String, NotUndef]],
+  }] $pjsip_notify_config                                = $asterisk::params::pjsip_notify_config
 ) inherits asterisk::params {
 
   $real_manage_service = deep_merge_extended(
@@ -284,6 +297,11 @@ class asterisk (
   $real_codecs_config = deep_merge_extended(
     $asterisk::params::codecs_config,
     $codecs_config
+  )
+
+  $real_pjsip_notify_configg = deep_merge_extended(
+    $asterisk::params::pjsip_notify_config,
+    $pjsip_notify_config
   )
 
   # Anchor this as per #8040 - this ensures that classes won't float off and

@@ -316,7 +316,24 @@ class asterisk::config {
         },
       },
   }
-
+  # pjsip_notify.conf
+  asterisk::util::settings_to_file { "${asterisk::confdir}/pjsip_notify.conf":
+    seperator        => '=>',
+    standardsettings => {
+      'clear-mwi'             => $asterisk::real_pjsip_notify_config['clear-mwi'],
+      'aastra-check-cfg'      => $asterisk::real_pjsip_notify_config['aastra-check-cfg'],
+      'aastra-xml'            => $asterisk::real_pjsip_notify_config['aastra-xml'],
+      'digium-check-cfg'      => $asterisk::real_pjsip_notify_config['digium-check-cfg'],
+      'linksys-cold-restart'  => $asterisk::real_pjsip_notify_config['linksys-cold-restart'],
+      'linksys-warm-restart'  => $asterisk::real_pjsip_notify_config['linksys-warm-restart'],
+      'polycom-check-cfg'     => $asterisk::real_pjsip_notify_config['polycom-check-cfg'],
+      'sipura-check-cfg'      => $asterisk::real_pjsip_notify_config['sipura-check-cfg'],
+      'sipura-get-report'     => $asterisk::real_pjsip_notify_config['sipura-get-report'],
+      'snom-check-cfg'        => $asterisk::real_pjsip_notify_config['snom-check-cfg'],
+      'snom-reboot'           => $asterisk::real_pjsip_notify_config['snom-reboot'],
+      'cisco-check-cfg'       => $asterisk::real_pjsip_notify_config['cisco-check-cfg'],
+    }
+  }
   #
   # cleanup unused files
   #
