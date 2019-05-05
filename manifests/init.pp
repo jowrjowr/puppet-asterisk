@@ -135,6 +135,9 @@ class asterisk (
     'default'             => Optional[Hash[String, NotUndef]],
   }] $moh_config                                = $asterisk::params::moh_config,
   Struct[{
+    'general'             => Optional[Hash[String, NotUndef]],
+  }] $privacy_config                                = $asterisk::params::privacy_config,
+  Struct[{
     'ENV'                 => Hash[String, NotUndef],
     'asterisk'            => Hash[String, NotUndef],
   }] $res_odbc_config                           = $asterisk::params::res_odbc_config,
@@ -291,7 +294,10 @@ class asterisk (
     $asterisk::params::moh_config,
     $moh_config
   )
-
+  $real_privacy_config = deep_merge_extended(
+    $asterisk::params::privacy_config,
+    $privacy_config
+  )
   $real_res_odbc_config = deep_merge_extended(
     $asterisk::params::res_odbc_config,
     $res_odbc_config

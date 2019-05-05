@@ -550,6 +550,12 @@ class asterisk::params {
     },
   }
 
+  $privacy_config = {
+    'general' => {
+      'maxretries'  => '2',
+      'minlength'   => '8',
+    }
+  }
   # leaving empty structure for pjsip config for future use
   # the sample config is empty so no configuration defaults
   $pjsip_config = {

@@ -293,6 +293,9 @@ class asterisk::config {
   asterisk::util::settings_to_file { "${asterisk::confdir}/amd.conf":
     standardsettings => { 'general' => $asterisk::real_amd_config['general'] },
   }
+  asterisk::util::settings_to_file { "${asterisk::confdir}/privacy.conf":
+    standardsettings => { 'general' => $asterisk::real_privacy_config['privacy'] },
+  }
   asterisk::util::settings_to_file { "${asterisk::confdir}/codecs.conf":
     standardsettings => {
         'speex'     => $asterisk::real_codecs_config['speex'],
