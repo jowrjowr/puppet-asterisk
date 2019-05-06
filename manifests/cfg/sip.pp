@@ -29,7 +29,7 @@ define asterisk::cfg::sip (
   $fromdomain    = false,
   $fromuser      = false,
   $outboundproxy = false,
-  $t38pt_udptl   = false,
+  $t38pt_udptl   = 'no',
   $disallow      = [],
   $allow         = [],
   $dtmfmode      = false,
