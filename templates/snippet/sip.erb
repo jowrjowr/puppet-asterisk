@@ -8,12 +8,12 @@
 type=<%= @account_type %>
 <% end -%>
 <% if @sendrpid != 'no' -%>
-type=<%= @sendrpid %>
+sendrpid=<%= @sendrpid %>
 <% end -%>
 <% if @port != '' -%>
 port=<%= @port %>
 <% end -%>
-<% if @progressinband != '' -%>
+<% if @progressinband != 'never' -%>
 progressinband=<%= @progressinband %>
 <% end -%>
 <% if @username != false -%>
@@ -42,7 +42,7 @@ language=<%= @language %>
 <% if @nat != false -%>
 nat=<%= @nat %>
 <% end -%>
-<% if @qualify != false -%>
+<% if @qualify != no -%>
 qualify=<%= @qualify %>
 <% end -%>
 <% if @vmexten != false -%>
@@ -66,7 +66,7 @@ call-limit=<%= @calllimit %>
 <% if @callgroup != false -%>
 callgroup=<%= @callgroup %>
 <% end -%>
-<% if @t38pt_udptl != false -%>
+<% if @t38pt_udptl != no -%>
 t38pt_udptl=<%= @t38pt_udptl %>
 <% end -%>
 <% if @mailbox != false -%>
