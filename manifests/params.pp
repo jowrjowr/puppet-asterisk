@@ -128,7 +128,7 @@ class asterisk::params {
   $parking_config = {
     'general'    => {
       'parkeddynamic' => true
-    }
+    },
     'default'    => {
       'parkext'           => 700,
       'parkext_exclusive' => true,
