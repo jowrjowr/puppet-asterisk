@@ -151,8 +151,11 @@ class asterisk::params {
 
   $features_config = {
     'general'    => {},
+    'parking'    => {
+      'parkeddynamic' => true,
+    },
     'featuremap' => {},
-  }
+}
 
 
   $queues_options = {
