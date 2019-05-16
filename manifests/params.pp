@@ -121,11 +121,36 @@ class asterisk::params {
   }
 
   # defines the default parkinglot
+  # as per https://github.com/asterisk/asterisk/blob/master/configs/samples/res_parking.conf.sample
+  # "This parking lot is guaranteed to exist and will be created even if
+  # default is left out of the configuration file."
+
+  $parking_config = {
+    'general'    => {
+      'parkeddynamic' => true
+    }
+    'default'    => {
+      'parkext'           => 700,
+      'parkext_exclusive' => true,
+      'parkpos'           => '701-720',
+      'context'           => 'parkedcalls',
+      'parkinghints'      => false,
+      'parkingtime'       => 45,
+      'comebacktoorigin'  => true,
+      'comebackdialtime'  => 30,
+      'comebackcontext'   => 'parkedcallstimeout',
+      'courtesytone'      => 'beep',
+      'parkedplay'        => 'caller',
+      'parkedcalltransfers' => false,
+      'parkedcallreparking' => false,
+      'parkedcallhangup'    => false,
+      'findslot'            => 'next',
+      'parkedmusicclass'    => 'default',
+    },
+  }
+
   $features_config = {
     'general'    => {},
-    'parking'    => {
-      'parkeddynamic' => true,
-    },
     'featuremap' => {},
   }
 

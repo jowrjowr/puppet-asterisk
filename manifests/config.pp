@@ -69,7 +69,10 @@ class asterisk::config {
 
   # TODO: create a defined to create a parkinglot via asterisk::cfg:: define
   asterisk::util::settings_to_file { "${asterisk::confdir}/res_parking.conf":
-    standardsettings => { 'general' => $asterisk::real_features_options['parking'] },
+    standardsettings => {
+      'general' => $asterisk::real_parking_options['general'],
+      'default' => $asterisk::real_parking_options['default']
+    },
     includes         => ["${asterisk::confdir}/parkinglots.d"],
   }
 

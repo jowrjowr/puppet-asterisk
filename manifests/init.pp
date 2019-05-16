@@ -56,11 +56,12 @@ class asterisk (
   }]  $extensions_options                        = $asterisk::params::extensions_options,
   Struct[{
     'general'      => Hash[String, NotUndef],
-    'parking'      => Struct[{
-      'parkeddynamic' => Boolean,
-    }],
     'featuremap'   => Hash[String, NotUndef],
   }] $features_config                            = $asterisk::params::features_config,
+  Struct[{
+    'general'      => Hash[String, NotUndef],
+    'default'      => Optional[Hash[String, NotUndef]],
+  }] $parking_config                            = $asterisk::params::parking_config,
   Struct[{
     'general' => Hash[String, NotUndef],
   }] $queues_options                             = $asterisk::params::queues_options,
@@ -225,6 +226,10 @@ class asterisk (
   $real_features_options = deep_merge_extended(
     $asterisk::params::features_config,
     $features_config,
+  )
+  $real_parking_options = deep_merge_extended(
+    $asterisk::params::parking_config,
+    $parking_config,
   )
   $real_queues_options = deep_merge_extended(
     $asterisk::params::queues_options,
