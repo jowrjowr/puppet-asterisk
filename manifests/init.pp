@@ -55,7 +55,7 @@ class asterisk (
 
   }]  $extensions_options                        = $asterisk::params::extensions_options,
   Struct[{
-    'general'      => Hash[String, NotUndef],
+    'general'      => Optional[Hash[String, NotUndef]],
     'featuremap'   => Hash[String, NotUndef],
   }] $features_config                            = $asterisk::params::features_config,
   Struct[{
